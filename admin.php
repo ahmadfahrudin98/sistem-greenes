@@ -29,3 +29,30 @@ function validasi(form){
 </head>
 <body OnLoad="document.login.username.focus();">
 <div id="login">
+<h4>LOGIN ADMIN</h4>
+    <div class="fieldContainer">
+      <form name="login" action="cek_login.php" method="POST" onSubmit="return validasi(this)">
+        <div class="formRow">
+            <div class="field">
+                <input type="text" name="id_user" id="id_user" placeholder=" username...">
+        <input type="hidden" name="level" value='Admin'>
+            </div>
+        </div>
+        <div class="formRow">     
+            <div class="field">
+                <input type="password" name="password" id="password" placeholder=" password...">
+            </div>
+        </div>
+    </div>
+    
+  <div class="signupButton">
+        <input type="submit" name="submit" id="submit" value="Login" />
+    </div>
+      </form>
+      
+</div>
+  
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+</body>
+</html>
