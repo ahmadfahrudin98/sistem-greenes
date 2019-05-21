@@ -168,7 +168,7 @@ h1,h3,h4,h5 {
 
 *{color: #000000;}
 .bg{
-	background: url('.../nes.jpg') no-repeat; width: 100%; height: 100vh;
+	background: url('.../images/nes.jpg') no-repeat; width: 100%; height: 100vh;
 }
 
 .form-container{
