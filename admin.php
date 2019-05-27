@@ -4,9 +4,9 @@
 <link rel="shortcut icon" href="favicon.ico" />
 <script language="javascript">
 function validasi(form){
-  if (form.id_user.value == ""){
+  if (form.username.value == ""){
     alert("Anda belum mengisikan Username.");
-    form.id_user.focus();
+    form.username.focus();
     return (false);
   }
      
@@ -34,7 +34,7 @@ function validasi(form){
       <form name="login" action="cek_login.php" method="POST" onSubmit="return validasi(this)">
         <div class="formRow">
             <div class="field">
-                <input type="text" name="id_user" id="id_user" placeholder=" username...">
+                <input type="text" name="username" id="username" placeholder=" username...">
         <input type="hidden" name="level" value='Admin'>
             </div>
         </div>
