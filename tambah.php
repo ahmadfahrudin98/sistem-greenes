@@ -11,17 +11,17 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="container-fluid bg">
+	<div class="container-fluid bg " action="regis.php" method="POST">
 		<div class="row">
 			<div class="col-md-3 col-sm-12 col-xs-12"--></div>
 			<div class="col-md-6 col-sm-12 col-xs-12">
 				<!--form start-->
-				<form class="form-container" action="regis.php" method="post">
+				<form class="form-container">
 					<h1>TAMBAH ANGGOTA</h1>
 
 					<div class="form-group">
-						<label for="exampleInputEmail1">Username</label>
-						<input type="text" class="form-control" id="exampleInputEmail1"  placeholder="Enter Username" name="username">
+						<label for="username">Username</label>
+						<input type="text" class="form-control" id="username"  placeholder="Enter Username" name="username">
 				  	</div>
 
 				  	<div class="form-group">
@@ -41,8 +41,8 @@
 				  	</div>
 
 				  	<div class="form-group">
-				  		<label for="start">Start date:</label>
-				  		<input type="date" id="start" name="tanggal" value="2018-07-22" min="1999-01-01" max="2018-12-31">
+				  		<label for="start">Tanggal Lahir</label>
+				  		<input type="date" id="start" name="lahir" value="2018-07-22" min="1999-01-01" max="2018-12-31">
 				  	</div>
 				  	<button type="submit" class="btn btn-success btn-block">Tambah</button>
 				</form>
