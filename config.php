@@ -11,14 +11,9 @@ $password = "";
 
 $dbconnect = mysqli_connect($servername, $username, $password, $database);
 
-/**
-	*Check Error yang terjadi saat koneksi
-	*jika terdapat error maka die() //stop dan tampilkan error
-*/
-
-/*if ($dbconnect->connect_error) {
-	die('Database Not Connect, Error : '. $dbconnect->connet_error);
-}*/
-
+//check connection
+if(mysqli_connect_errno()){
+	echo "Koneksi database gagal: ".mysqli_connect_error();
+}
 
   ?>
