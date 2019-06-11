@@ -1,2 +1,2 @@
 # sistem-greenes
-sistem gren unnes
+GREENNES (Green UNNES), sistem pemeringkatan fakultas dalam rangka mendukung visi misi UNNES sebagai kampus konservasi.
