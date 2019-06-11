@@ -1,13 +1,13 @@
 <?php
 session_start();
 error_reporting(0);
-include "config/fungsi_rupiah.php";
+//include "config/fungsi_rupiah.php";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>.:: GRENNES (Green Unnes)::.</title>
+<title>GRENNES (Green UNNES)</title>
 <link href="page/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="page/js/dropdown.js"></script>
 <script type="text/javascript" src="page/js/highslide-with-html.js"></script>
@@ -25,10 +25,10 @@ include "config/fungsi_rupiah.php";
   </div>
 <div id="top"> 
 	<span class="cpojer-links"> 
-		<a href="http://localhost/green/">Home</a> 
+		<a href="http://localhost/green/">Beranda</a> 
 		<a href="jadwal.html">Hasil Survey</a> 
 		<a href="pemesanan.html">Indikator</a>
-		<a href="lihat-detail-1.html">About us</a>
+		<a href="lihat-detail-1.html">Tentang Kami</a>
 		<a href="hubungi-kami.html">Hubungi Kami</a> 
 		
 	</span>
@@ -47,7 +47,7 @@ include "config/fungsi_rupiah.php";
 		</div>
 
 	<div style='color:#fff;' id="footer">
-	Copyright (c) 2019 - GRENNES (Green Unnes)
+	© 2019 GREENNES. All rights reserved.
     </div>
         
 </div>
