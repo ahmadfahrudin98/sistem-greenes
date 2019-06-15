@@ -8,7 +8,7 @@ include "../config/session_admin.php";
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>.:: GRENNES (Grenn Unnes)::.</title>
+<title>GRENNES (Green UNNES)</title>
 <link href="../page/admin.css" rel="stylesheet" type="text/css" />
 <script src="../page/js/calendar/datetimepicker.js" type="text/javascript"></script>
 <script src="tiny_mce/tiny_mce.js" type="text/javascript"></script>
