@@ -27,10 +27,22 @@ error_reporting(0);
 	<span class="cpojer-links"> 
 		<a href="http://localhost/green/">Beranda</a> 
 		<a href="jadwal.html">Hasil Survey</a> 
+		</div>
+	
+		<div>
 		<a href="pemesanan.html">Indikator</a>
-		<a href="lihat-detail-1.html">Tentang Kami</a>
-		<a href="hubungi-kami.html">Hubungi Kami</a> 
+		<?php include "indikator.php"; ?>
+		</div>	
 		
+		<div>
+		<a href="tentang.html">Tentang Kami</a>
+		<?php include "tentang.php"; ?>
+		</div>
+	
+		<div>	
+		<a href="fakultas.html">Fakultas</a> 
+		<?php include "fakultas.php"; ?>
+		</div>
 	</span>
 </div>
 <table style='width:100%; padding-bottom:20px;'><tr></tr></table>
