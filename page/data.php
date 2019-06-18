@@ -325,58 +325,19 @@ echo "<script>window.alert('Sukses Mendaftarkan jadwal Sewa Lapangan Futsal.');
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 elseif ($_GET[module]=='laporanpemesanan'){
-    echo "<div class='post_title'><b>ISI SURVEY DENGAN BENAR</b> </div><br/>
-		 <div class='h_line'></div>
-          <table style='margin-bottom:20px' cellpadding=6 width=100%>
-          <tr style='color:#fff; height:38px;' bgcolor=#1d5103>
-		  <th>No.</th>
-		  <th>Jam</th>
-		  <th>Durasi</th>
-		  <th>Harga</th>
-		  <th>Tanggal</th>
-		  <th>Status</th>
-		  <th>Aksi</th></tr>";
+   $sql=mysql_query("SELECT * FROM soal");
+   //$jumlah=mysql_num_rows($sql);
+   $urut=0;
+   $r=mysql_fetch_array($sql);
+   	echo "<form name='form1' method'post' action='jawab.php'>
+          <div class='post_title'><b>Isilah pertanyaan dibawah ini</b></div>
+          <div class='text_area'>".nl2br($r[id_soal]).". ".nl2br($r[pertanyaan])."</div>
+          <input type='radio' class='text_area' value='pilihan_a'>".nl2br($r[pilihan_a])."</input>
+          <input type='radio' class='text_area' value='pilihan_b'>".nl2br($r[pilihan_b])."</input>
+          
+          
+          ";      
 
-
-    $p      = new Paging;
-    $batas  = 10;
-    $posisi = $p->cariPosisi($batas);
-
-    $tampil = mysql_query("SELECT * FROM laporan,lapangan WHERE lapangan.id_lapangan=laporan.id_lapangan 
-						   ORDER BY id_orders DESC LIMIT $posisi,$batas");
-  $no = $posisi+1;
-    while($r=mysql_fetch_array($tampil)){
-	
-		$tgl = tgl_indo($r[tanggal]);
-	    $jam_mulai = $r[jam_mulai];
-        $jam_selesai = $r[jam_selesai];
-        $durasi = $jam_selesai - $jam_mulai;
-		
-	
-	  if(($no % 1)==0){
-		$warna="#267000";
-	  }else{
-		$warna="#E1E1E1";
-	  }
-      echo "<tr bgcolor=$warna>
-                <td>$no</td>
-                <td>$r[jam_mulai] s/d $r[jam_selesai]</td>
-				<td>$durasi/jam</td>
-				<td>Rp. $r[total_harga]</td>
-				<td>$tgl</td>
-                <td>$r[status_pesanan]</td>
-				<td>
-				<input type=button value='Detail' class='button' onclick=\"window.location.href='detail-pemesanan-$r[id_orders].html';\">";
-	      echo "<a target='_BLANK' href='print.php?id=$r[id_orders]'><input type='button' value='Cetak' class='button'></a>";
-				
-				echo "</center></td></tr>";
-      $no++;
-    }
-	$jmldata = mysql_num_rows(mysql_query("SELECT * FROM laporan where username='$_SESSION[namauser]'"));
-    $jmlhalaman  = $p->jumlahHalaman($jmldata, $batas);
-    $linkHalaman = $p->navHalaman($_GET[halaman], $jmlhalaman);
-
-    echo "</table>";
     echo "<br/>Halaman: $linkHalaman<br>";
 	}
 	
