@@ -205,12 +205,6 @@ ALTER TABLE `hubungi`
   ADD PRIMARY KEY (`id_hubungi`);
 
 --
--- Indexes for table `jam`
---
-ALTER TABLE `jam`
-  ADD PRIMARY KEY (`id_jam`);
-
---
 -- Indexes for table `jns_soal`
 --
 ALTER TABLE `jns_soal`
@@ -221,18 +215,6 @@ ALTER TABLE `jns_soal`
 --
 ALTER TABLE `konfirmasi`
   ADD PRIMARY KEY (`id_konfirmasi`);
-
---
--- Indexes for table `laporan`
---
-ALTER TABLE `laporan`
-  ADD PRIMARY KEY (`id_orders`);
-
---
--- Indexes for table `rekening`
---
-ALTER TABLE `rekening`
-  ADD PRIMARY KEY (`id_rekening`);
 
 --
 -- Indexes for table `soal`
@@ -272,11 +254,6 @@ ALTER TABLE `hasil`
 ALTER TABLE `hubungi`
   MODIFY `id_hubungi` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `jam`
---
-ALTER TABLE `jam`
-  MODIFY `id_jam` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
---
 -- AUTO_INCREMENT for table `konfirmasi`
 --
 ALTER TABLE `konfirmasi`
@@ -286,11 +263,7 @@ ALTER TABLE `konfirmasi`
 --
 ALTER TABLE `laporan`
   MODIFY `id_orders` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
---
--- AUTO_INCREMENT for table `rekening`
---
-ALTER TABLE `rekening`
-  MODIFY `id_rekening` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `statis`
 --
