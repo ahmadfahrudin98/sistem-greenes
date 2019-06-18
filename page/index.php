@@ -31,7 +31,7 @@ error_reporting(0);
 		<?php include "indikator.php"; ?>
 		<a href="lihat-detail-1.html">Tentang Kami</a>
 		<?php include "tentang.php"; ?>
-		<a href="hubungi-kami.html">Hubungi Kami</a> 
+		<a href="hubungi-kami.html">Fakultas Kami</a> 
 		<?php include "about.php"; ?>
 		
 	</span>
