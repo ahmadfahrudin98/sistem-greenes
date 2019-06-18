@@ -470,17 +470,32 @@ elseif (empty($_POST[g])){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 elseif ($_GET[module]=='hubungikami'){
-  echo "<div class='post_title'><b>Hubungi kami secara online dengan mengisi form dibawah ini :</b></div><br/>
-		<form action=hubungi-aksi.html name='formku' onSubmit='return valid()' method=POST >
+  echo "<div class='post_title'><b>Fakultas Kami</b></div><br/>
         <table width=99% style=' padding: 1em; margin-right=10px'>
-        <tr><td>Nama</td><td> <input type=text name=nama_lengkap value='$_SESSION[namalengkap]' size=68 class='input' ></td></tr>
-        <tr><td>Email</td><td> <input type=text name=alamat_email value='$_SESSION[email]' size=68 class='input' ></td></tr>
-        <tr><td>Subjek</td><td> <input type=text name=subjek size=68 class='input'></td></tr>
-        <tr><td valign=top>Pesan</td><td> <textarea name=pesan style='width: 509px; height: 120px;' class='input'></textarea></td></tr>
-        <tr>
-		<td valign=top></td>
-		<td><input type=submit name=submit class='button' value=Kirim class='submit'>
-		<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></td></tr>
+        <b>1. FMIPA</b></div><br/>
+        <b>Fakultas Ilmu Pengetahuan Alam UNNES terdiri atas jurusan Matematika, Fisika, Kimia, Biologi, IPA, dan Teknik Informatika.</b></div><br/>
+        <b> </b></div><br/>
+        <b>2. FE</b></div><br/>
+        <b>Fakultas Ekonomi UNNES terdiri atas jurusan Pendidikan Ekonomi, Akuntansi, Manajemen, dan Ekonomi Pembangunan. atas jurusan Matematika, Fisika, Kimia, Biologi, IPA, dan Teknik Informatika.</b></div><br/>
+        <b> </b></div><br/>
+        <b>3. FBS</b></div><br/>
+        <b>Fakultas Bahasa dan Seni UNNES terdiri atas jurusan Bahasa dan Sastra Indonesia, Bahasa dan Sastra Jawa, Bahasa dan Sastra Asing, Seni Rupa, dan Pendidikan Seni Tari dan Musik.</b></div><br/>
+        <b> </b></div><br/>
+        <b>4. FH</b></div><br/>
+        <b>Fakultas Hukum UNNES terdiri atas jurusan Ilmu Hukum.</b></div><br/>
+        <b> </b></div><br/>
+        <b>5. FIK</b></div><br/>
+        <b>Fakultas Ilmu Keolahragaan UNNES terdiri atas jurusan Pendidikan Jasmani, Kesehatan, dan Rekreasi, Pendidikan Kepelatihan Olahraga, Ilmu Keolahragaan, dan Ilmu Kesehatan Masyarakat.</b></div><br/>
+        <b> </b></div><br/>
+        <b>6. FT</b></div><br/>
+        <b>Fakultas Teknik UNNES terdiri atas jurusan Teknik Sipil, Teknik Mesin, Teknik Elektro, Pendidikan Kesejahteraan Keluarga, dan Teknik Kimia.</b></div><br/>
+        <b> </b></div><br/>
+        <b>7. FIP</b></div><br/>
+        <b>Fakultas Ilmu Pendidikan UNNES terdiri atas jurusan Pendidikan Non Formal, Pendidikan Guru PAUD, Kurikulum dan Teknologi Pendidikan, Bimbingan Konseling, Pendidikan Guru SD, dan Psikologi.</b></div><br/>
+        <b> </b></div><br/>
+        <b>8. FIS</b></div><br/>
+        <b>Fakultas Ilmu Sosial UNNES terdiri atas jurusan Geografi, Sejarah, Ilmu Politik, Pendidikan Pancasila dan Kewarganegaraan, dan Pendidikan Sosiologi dan Antropologi.</b></div><br/>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></td></tr>
         </table></pad></form>";
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
