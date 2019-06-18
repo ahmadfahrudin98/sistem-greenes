@@ -6,15 +6,10 @@ if ($_GET[module]=='home'){
 		  <img src='gambar/unnes.jpg' width='600'>
           <div class='text_area'>".nl2br($r[detail])."</div>";      
 }
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='gantipassword'){
 	if (isset($_POST[pass])){
 		$e=mysql_fetch_array(mysql_query("SELECT * FROM users WHERE username='$_SESSION[namauser]'"));
-
 		$lama = md5($_POST[a]);
 		if ($lama != $e[password]){
 			echo "<script>window.alert('Maaf, Inputan Password Lama anda Salah.');
@@ -28,7 +23,6 @@ elseif ($_GET[module]=='gantipassword'){
 			echo "<script>window.alert('Sukses, Ganti Password...');
         			window.location=('ganti-password.html')</script>";
 		}
-
 	}
 	    echo "<div class='post_title'><b>Edit User.</b></div><br/>
 			 <div class='h_line'></div>
@@ -42,13 +36,10 @@ elseif ($_GET[module]=='gantipassword'){
 	          </table></form>";  
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 // Modul daftar Customer
 elseif ($_GET[module]=='daftar'){
 echo "<div class='post_title'><b>Form Registrasi User</b></div>
 			 <div class='h_line'></div>
-
 		  <p>Silahkan isi formulir pendaftaran berikut dengan data yang sebenarnya.</p>
           <form method=POST name='formku' onSubmit='return valid()' action='aksi_daftar.php'>
           <table style='border:none;' width='100%'><br/>
@@ -58,14 +49,11 @@ echo "<div class='post_title'><b>Form Registrasi User</b></div>
 		  <tr><td>NIM/NIP</td>       	<td>&nbsp;<input type=text name='email' size=55 class='input'></td></tr>
           <tr><td>Jabatan</td>   	<td>&nbsp;<input type=text name='no_telp' size=35 class='input'></td></tr>
           <tr><td>Alamat Lengkap</td> 	<td>&nbsp;<textarea name='alamat_lengkap' style='width: 93%; height: 70px;' class='input'></textarea></td></tr> 
-
           <tr><td></td><td><input type=submit value='Mendaftar' class='button'>
           <input type=button value=Batal onclick=self.history.back() class='button'><br/><br/><br/></td>
           </table></pad></form><br/>";
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='kelolaprofile'){
 	if (isset($_POST[update])){
 		    mysql_query("UPDATE users SET fakultas   = '$_POST[fakultas]',
@@ -73,11 +61,9 @@ elseif ($_GET[module]=='kelolaprofile'){
 		                                  no_telp    = '$_POST[tanggal_lahir]',  
 		                                  alamat_lengkap = '$_POST[alamat_lengkap]'
 		                           WHERE  username       = '$_POST[id]'");
-
 		  echo "<script>window.alert('Sukses Update Data Profile.');
         			window.location=('kelola-profile.html')</script>";
 	}
-
     $edit=mysql_query("SELECT * FROM users WHERE username='$_SESSION[namauser]'");
     $r=mysql_fetch_array($edit);
     echo "<div class='post_title'><b>Edit Data Anda</b></div><br/>
@@ -98,18 +84,14 @@ elseif ($_GET[module]=='kelolaprofile'){
                             <input type=button value=Batal class='button' onclick=self.history.back()></td></tr>
           </table></form>";  
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='home'){
   $sql=mysql_query("SELECT * FROM statis WHERE halaman='home'");
   $r=mysql_fetch_array($sql);
     echo "<div class='post_title'>$r[judul]</div>
           <div class='text_area'>".nl2br($r[detail])."</div>";      
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='pesanan'){
   $sql=mysql_query("SELECT * FROM statis WHERE halaman='pesanan'");
   $r=mysql_fetch_array($sql);
@@ -117,19 +99,19 @@ elseif ($_GET[module]=='pesanan'){
           <div class='text_area'>".nl2br($r[detail])."</div>";      
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='jadwal'){
     echo "<div class='post_title'><b>Hasil Survey</b> </div><br/>
 		 <div class='h_line'></div>
-          <table style='margin-bottom:20px' cellpadding=6 width=100%>
+          <table style='margin-bottom:20px' cellpadding=4 width=100%>
           <tr style='color:#fff; height:38px;' bgcolor=#1d5103>
 		  <th>No.</th>
-		  <th>Jam</th>
-		  <th>Durasi</th>
-		  <th>Tanggal</th>
-		  <th>Status</th>";
-
-
+		  <th>Fakultas</th>
+		  <th>Poin SDM</th>
+		  <th>Poin Ruang Hijau</th>
+		  <th>Poin Transportasi</th>
+		  <th>Poin Energi</th>
+		  <th>Poin Daur Ulang</th>
+		  <th>Total Poin</th>";
     $tampil = mysql_query("SELECT * FROM laporan,lapangan WHERE lapangan.id_lapangan=laporan.id_lapangan 
 						   ORDER BY id_orders DESC LIMIT 15");
   $no = $posisi+1;
@@ -155,12 +137,9 @@ elseif ($_GET[module]=='jadwal'){
 				</tr>";
       $no++;
     }
-
     echo "</table>";
 	}
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='sewa'){
 echo "<div class='post_title'><b>Daftar Lapangan Futsal</b></div><br/>";
   $col = 2;
@@ -188,35 +167,22 @@ if ($ada > 0) {
 	$jmldata = mysql_num_rows(mysql_query("SELECT * FROM about"));
     $jmlhalaman  = $p->jumlahHalaman($jmldata, $batas);
     $linkHalaman = $p->navHalaman($_GET[halaman], $jmlhalaman);
-
     echo "<br/>Halaman : $linkHalaman<br />";	  
 }
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 elseif ($_GET[module]=='detaillapangan'){
-
 $query = mysql_query("SELECT * FROM about where id_about=$_GET[id]");
 $r=mysql_fetch_array($query);
-
 echo "<div class='post_title'><b>$r[judul]</b></div><br/>
 	 <img src='gambar/$r[gambar]' width='600'><br/>
      <div class='text_area'>".nl2br($r[detail])."</div>"; 
-
 echo "<table width='100%'><br/>
 	   
 	  </table>";
-	  
-	  if ($_SESSION[leveluser]=='members'){ 
-echo "<table><tr><td></td>
-      <td><input style='width:100px;' type=button value='Pesan'  class='button' onclick=\"window.location.href='sewa-lapangan-$r[id_lapangan].html';\"></td></tr></table>";
-	}	
+	
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='sewalapangan'){
 		 $edit=mysql_query("SELECT * FROM users WHERE username='$_SESSION[namauser]'");
         $k=mysql_fetch_array($edit);
@@ -226,7 +192,6 @@ elseif ($_GET[module]=='sewalapangan'){
 		$r=mysql_fetch_array($query);
 		$harga = format_rupiah($r[harga_lapangan]);
 		
-
 echo "<div class='post_title'><b>Pemesanan $r[judul].</b></div><br/>";
 echo "<form method=POST action='aksi-pesan.html' enctype='multipart/form-data'>
 	  <table style='margin-bottom:45%;' width='100%'>
@@ -257,7 +222,6 @@ echo "<select style='width:140px; margin-left:-4px;' name='jam_mulai'>
 echo "<option>$r[jam_mulai]</option>";
       }
 echo "</select>
-
       <select style='width:140px; margin-left:4px;' name='jam_selesai'>";
 	  
 echo "<option value='0' selected>- Pilih Jam Selesai -</option>";
@@ -275,15 +239,10 @@ echo "</td></tr>
 	  <td>&nbsp;&nbsp;&nbsp;<input type='submit' name='submit' class='button' value='Pesan Sekarang'></td></tr>
 	  </table></form>";
       }
-
-
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='aksipesan'){
 $query = mysql_query("SELECT * FROM lapangan where id_lapangan='$_POST[id_lapangan]'");
 $r=mysql_fetch_array($query);
-
 $jumlahh = mysql_query("SELECT * FROM laporan 
                         where jam_mulai='$_POST[jam_mulai]' 
                         and jam_selesai='$_POST[jam_selesai]' 
@@ -294,8 +253,6 @@ $jml = mysql_num_rows($jumlahh);
 if ($jml >= 1){
 echo "<script>window.alert('Maaf, Jadwal Sewa Lapangan Futsal pada Jam $_POST[jam_mulai] s/d $_POST[jam_selesai] Sudah Ke isi, silahkan pilih jam Lainnya.');
 			  window.location=('javascript:history.go(-1)')</script>";
-
-
 }else{
         $jam_mulai   = $_POST['jam_mulai'];
         $jam_selesai = $_POST['jam_selesai'];
@@ -321,9 +278,7 @@ echo "<script>window.alert('Sukses Mendaftarkan jadwal Sewa Lapangan Futsal.');
 			window.location=('http://localhost/green/')</script>";
 }
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='laporanpemesanan'){
    $sql=mysql_query("SELECT * FROM soal");
    //$jumlah=mysql_num_rows($sql);
@@ -337,7 +292,6 @@ elseif ($_GET[module]=='laporanpemesanan'){
           
           
           ";      
-
     echo "<br/>Halaman: $linkHalaman<br>";
 	}
 	
@@ -351,7 +305,6 @@ $tanggal = tgl_indo($r[tanggal]);
 $jam_mulai   = $r[jam_mulai];
 $jam_selesai = $r[jam_selesai];
 $durasi      = $jam_selesai - $jam_mulai;
-
 echo "<div class='post_title'><b>Detail Pemesanan $r[judul] - $r[id_orders]</b></div><br/>";
 echo "<table style='margin-bottom:35%;' width='100%'><br/>
           <tr><td width='20%'>Nama Pemesan</td>     	
@@ -380,16 +333,13 @@ echo "<table style='margin-bottom:35%;' width='100%'><br/>
 		  <input style='padding:8px; margin-left:5px;margin-top:5px;' type=button value='Konfirmasi Pembayaran' class='button' onclick=\"window.location.href='konfirmasi-pembayaran-$r[id_orders].html';\"></td></tr>
 	  </table>";	
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='konfirmasipembayaran'){
 $query = mysql_query("SELECT * FROM laporan left join lapangan on laporan.id_lapangan=lapangan.id_lapangan
 						left join users on laporan.username=users.username
 						where laporan.id_orders=$_GET[id]");
 $r=mysql_fetch_array($query);
 		
-
  echo "<div class='post_title'><b>Konfirmasi Pembayaran Untuk No Orders : $r[id_orders]</b></div><br/>";
  echo " <form action=aksi-konfirmasi.html method=POST name='formku' onSubmit='return valid()'>
         <table  style=' padding: 1em; margin-right=10px'>
@@ -414,9 +364,7 @@ $r=mysql_fetch_array($query);
         </table>
 		</form>";
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='aksikonfirmasi'){
 if (empty($_POST[c])){
 	echo "<script>window.alert('Anda belum memilih No rekening');
@@ -454,7 +402,6 @@ elseif (empty($_POST[g])){
 								   '$_POST[f]',
 								   '$_POST[g]',
 								   '$_POST[h]')");
-
 	if ($_POST[a]=='All'){
 			mysql_query("UPDATE laporan SET status_pesanan = 'Booking' where status_pesanan = 'Baru'");						   
 		echo "<script>window.alert('Terima Kasih Telah Konfirmasi Pembayaran untuk $_POST[a]');
@@ -466,9 +413,7 @@ elseif (empty($_POST[g])){
 	}
 }
 }
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='hubungikami'){
   echo "<div class='post_title'><b>Fakultas Kami</b></div><br/>
         <table width=99% style=' padding: 1em; margin-right=10px'>
@@ -499,7 +444,6 @@ elseif ($_GET[module]=='hubungikami'){
         </table></pad></form>";
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 elseif ($_GET[module]=='hubungiaksi'){
 if (empty($_POST[nama_lengkap])){
 	echo "Nama Lengkap Masih Kosong";
