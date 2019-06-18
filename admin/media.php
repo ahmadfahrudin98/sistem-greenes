@@ -24,13 +24,7 @@ include "../config/session_admin.php";
       </div>
   </div>
     <div id="top"> 
-		<span class="cpojer-links"> 
-					<a href=?module=home>Manage Home</a>
-					<a href=?module=hubungi>Manajemen Hubungi </a> 	
-					<a href=?module=pesanan>Kelola Menu Indikator</a> 	
-					<a href=?module=user>Manage Members</a>
-					<a href=../logout.php>Logout</a>
-		</span>
+		
 	</div>
   
 		<div id="left_column">
@@ -43,7 +37,11 @@ include "../config/session_admin.php";
 		  <ul class="menu">
                 <?php echo "<br/><br/><div style='width:239px;' class='subtitle'></b> MENU ADMINISTRATOR</div>"; ?><br/>
 				<a class='shiny-button' href=?module=about>Kelola About</a>
-        </ul>
+				<a class='shiny-button' href=?module=jam>Kelola Soal</a>
+				<a class='shiny-button' href=?module=pesanan>Kelola Menu Indikator</a>
+				<a class='shiny-button' href=?module=user>Kelola Anggota</a>
+				<a class='shiny-button' href=../logout.php>Logout</a><br><br>
+          </ul>
 		</div>
 
 	<div id="footer">
