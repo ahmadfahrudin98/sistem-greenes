@@ -284,14 +284,17 @@ elseif ($_GET[module]=='laporanpemesanan'){
    //$jumlah=mysql_num_rows($sql);
    $urut=0;
    $r=mysql_fetch_array($sql);
-   	echo "<form name='form1' method'post' action='jawab.php'>
+   foreach ($r as $key) {
+   echo "<form name='form1' method'post' action='jawab.php'>
           <div class='post_title'><b>Isilah pertanyaan dibawah ini</b></div>
-          <div class='text_area'>".nl2br($r[id_soal]).". ".nl2br($r[pertanyaan])."</div>
-          <input type='radio' class='text_area' value='pilihan_a'>".nl2br($r[pilihan_a])."</input>
-          <input type='radio' class='text_area' value='pilihan_b'>".nl2br($r[pilihan_b])."</input>
+          <div class='text_area'>".nl2br($key[id_soal]).". ".nl2br($key[pertanyaan])."</div>
+          <input type='radio' class='text_area' value='pilihan_a'>".nl2br($key[pilihan_a])."</input>
+          <input type='radio' class='text_area' value='pilihan_b'>".nl2br($key[pilihan_b])."</input>
           
           
           ";      
+   }
+   	
     echo "<br/>Halaman: $linkHalaman<br>";
 	}
 	
