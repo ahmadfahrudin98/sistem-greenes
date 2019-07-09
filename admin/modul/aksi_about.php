@@ -26,7 +26,7 @@ elseif ($module=='about' AND $act=='update'){
   if (empty($lokasi_file)){
     mysql_query("UPDATE about SET    judul          = '$_POST[judul]',
                                      detail         = '$_POST[detail]',
-                                     harga_lapangan = '$_POST[harga_lapangan]'
+                                     
                                WHERE id_about    = '$_POST[id]'");
 							 
   header('location:../../media.php?module='.$module);
@@ -40,7 +40,7 @@ elseif ($module=='about' AND $act=='update'){
 	
     mysql_query("UPDATE about SET    judul          = '$_POST[judul]',
                                      detail         = '$_POST[detail]',
-                                     harga_lapangan = '$_POST[harga_lapangan]',
+                                     
                                      gambar         = '$nama_file_unik'
                                WHERE id_about   = '$_POST[id]'");
 	
