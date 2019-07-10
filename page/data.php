@@ -35,24 +35,8 @@ elseif ($_GET[module]=='gantipassword'){
 	                            <input type=button value=Batal onclick=self.history.back()></td></tr>
 	          </table></form>";  
 }
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Modul daftar Customer
-elseif ($_GET[module]=='daftar'){
-echo "<div class='post_title'><b>Form Registrasi User</b></div>
-			 <div class='h_line'></div>
-		  <p>Silahkan isi formulir pendaftaran berikut dengan data yang sebenarnya.</p>
-          <form method=POST name='formku' onSubmit='return valid()' action='aksi_daftar.php'>
-          <table style='border:none;' width='100%'><br/>
-          <tr><td>Username</td>     	<td>&nbsp;<input type=text name='username' size=25 class='input'></td></tr>
-          <tr><td>Password</td>     	<td>&nbsp;<input type='password' name='password' size=25 class='input'></td></tr>
-          <tr><td>Nama Lengkap</td> 	<td>&nbsp;<input type=text name='nama_lengkap' size=55 class='input'></td></tr>  
-		  <tr><td>NIM/NIP</td>       	<td>&nbsp;<input type=text name='email' size=55 class='input'></td></tr>
-          <tr><td>Jabatan</td>   	<td>&nbsp;<input type=text name='no_telp' size=35 class='input'></td></tr>
-          <tr><td>Alamat Lengkap</td> 	<td>&nbsp;<textarea name='alamat_lengkap' style='width: 93%; height: 70px;' class='input'></textarea></td></tr> 
-          <tr><td></td><td><input type=submit value='Mendaftar' class='button'>
-          <input type=button value=Batal onclick=self.history.back() class='button'><br/><br/><br/></td>
-          </table></pad></form><br/>";
-}
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET[module]=='kelolaprofile'){
 	if (isset($_POST[update])){
@@ -81,7 +65,7 @@ elseif ($_GET[module]=='kelolaprofile'){
 		  <td> <input type=date name='tanggal_lahir' size=30 value='$r[tanggal_lahir]'></td></tr>
           <tr><td></td>
 		  <td><input type=submit value=Update class='button' name='update'>
-                            <input type=button value=Batal class='button' onclick=self.history.back()></td></tr>
+      <input type=button value=Batal class='button' onclick=self.history.back()></td></tr>
           </table></form>";  
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -106,21 +90,17 @@ elseif ($_GET[module]=='jadwal'){
           <tr style='color:#fff; height:38px;' bgcolor=#1d5103>
 		  <th>No.</th>
 		  <th>Fakultas</th>
-		  <th>Poin SDM</th>
-		  <th>Poin Ruang Hijau</th>
-		  <th>Poin Transportasi</th>
-		  <th>Poin Energi</th>
-		  <th>Poin Daur Ulang</th>
+		  <th>Poin</th>
 		  <th>Total Poin</th>";
-    $tampil = mysql_query("SELECT * FROM laporan,lapangan WHERE lapangan.id_lapangan=laporan.id_lapangan 
-						   ORDER BY id_orders DESC LIMIT 15");
-  $no = $posisi+1;
+    $tampil = mysql_query("SELECT * FROM hasil 
+						   ORDER BY id_soal DESC LIMIT 15");
+  $no = 1;
     while($r=mysql_fetch_array($tampil)){
 	
-		$tgl = tgl_indo($r[tanggal]);
-	    $jam_mulai = $r[jam_mulai];
-        $jam_selesai = $r[jam_selesai];
-        $durasi = $jam_selesai - $jam_mulai;
+		$id_soal = $r[id_soal];
+	    $id_fakultas = $r[id_fakultas];
+        $hasil_a = $r[hasil];
+        
 		
 	
 	  if(($no % 1)==0){
@@ -129,11 +109,11 @@ elseif ($_GET[module]=='jadwal'){
 		$warna="#E1E1E1";
 	  }
       echo "<tr bgcolor=$warna>
-                <td>$no</td>
-                <td>$r[jam_mulai] s/d $r[jam_selesai] WIB</td>
-				<td>$durasi/jam</td>
-				<td>$tgl</td>
-                <td class='button'>$r[status_pesanan]</td>
+                <td>$r[id_soal]</td>
+                <td>$r[id_fakultas]</td>
+        				<td>$r[hasil]</td>
+        				<td></td>
+                <td class='button'></td>
 				</tr>";
       $no++;
     }
@@ -241,59 +221,292 @@ echo "</td></tr>
       }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET[module]=='aksipesan'){
-$query = mysql_query("SELECT * FROM lapangan where id_lapangan='$_POST[id_lapangan]'");
-$r=mysql_fetch_array($query);
-$jumlahh = mysql_query("SELECT * FROM laporan 
-                        where jam_mulai='$_POST[jam_mulai]' 
-                        and jam_selesai='$_POST[jam_selesai]' 
-						AND id_lapangan='$_POST[id_lapangan]'");
-$j=mysql_fetch_array($jumlahh);
-$jml = mysql_num_rows($jumlahh);
+
+//$query = mysql_query("SELECT * FROM lapangan where id_lapangan='$_POST[id_lapangan]'");
+//$r=mysql_fetch_array($query);
+//$jumlahh = mysql_query("SELECT * FROM laporan 
+//                        where jam_mulai='$_POST[jam_mulai]' 
+//                        and jam_selesai='$_POST[jam_selesai]' 
+//						AND id_lapangan='$_POST[id_lapangan]'");
+//$j=mysql_fetch_array($jumlahh);
+//$jml = mysql_num_rows($jumlahh);
 					
-if ($jml >= 1){
-echo "<script>window.alert('Maaf, Jadwal Sewa Lapangan Futsal pada Jam $_POST[jam_mulai] s/d $_POST[jam_selesai] Sudah Ke isi, silahkan pilih jam Lainnya.');
-			  window.location=('javascript:history.go(-1)')</script>";
-}else{
-        $jam_mulai   = $_POST['jam_mulai'];
-        $jam_selesai = $_POST['jam_selesai'];
-        $durasi      = $jam_selesai - $jam_mulai;
+//if ($jml >= 1){
+//echo "<script>window.alert('Maaf, Jadwal Sewa Lapangan Futsal pada Jam $_POST[jam_mulai] s/d $_POST[jam_selesai] Sudah //Ke isi, silahkan pilih jam Lainnya.');
+//			  window.location=('javascript:history.go(-1)')</script>";
+//}else{
+//        $jam_mulai   = $_POST['jam_mulai'];
+//        $jam_selesai = $_POST['jam_selesai'];
+//        $durasi      = $jam_selesai - $jam_mulai;
+//		
+//	    $total       = ($r[harga_lapangan]) * $durasi;
+//	    $harga       =  number_format(($total),0,",",".");
 		
-	    $total       = ($r[harga_lapangan]) * $durasi;
-	    $harga       =  number_format(($total),0,",",".");
 		
-		
-		$sql = mysql_query("INSERT INTO laporan (id_lapangan,
-												 jam_mulai,
-												 jam_selesai,
-												 username,
-												 tanggal,
-												 total_harga) 
-										   VALUES('$_POST[id_lapangan]',
-												'$_POST[jam_mulai]',
-												'$_POST[jam_selesai]',
-												'$_SESSION[namauser]',
-												'$tgl_sekarang',
-												'$harga')");
-echo "<script>window.alert('Sukses Mendaftarkan jadwal Sewa Lapangan Futsal.');
-			window.location=('http://localhost/green/')</script>";
-}
+		$sql = mysql_query("INSERT INTO soal (id_soal,
+												 hasil_a,
+												 hasil_b,
+												 hasil_c,
+												 jns_soal) 
+										   VALUES('$_POST[id_soal]',
+												'$_POST[jawaban_t]',
+												'$_POST[jawaban_r]',
+                        '$_POST[jawaban_e]',
+												'$_SESSION[jns_soal]',
+												
+												)");
+//echo "<script>window.alert('Sukses ');
+//			window.location=('http://localhost/green/')</script>";
+//}
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 elseif ($_GET[module]=='laporanpemesanan'){
-   $sql=mysql_query("SELECT * FROM soal");
+  echo "<tr><td width='100px;'>Fakultas</td><td> <select name='fakultas'>
+                <option selected>Pilih Jenis</option>
+                <option value='1'>FMIPA</option>
+                <option value='2'>FBS</option>
+                <option value='3'>FIS</option>
+                <option value='4'>FE</option>
+                <option value='5'>FIK</option>
+                <option value='6'>FIP</option>
+                <option value='7'>FT</option>
+                <option value='8'>FH</option>
+            </select></td></tr>";
+   	$user = '';
+   	$user = $_SESSION['username'];
+
+   $sql=mysql_query("SELECT soal.id_soal, soal.pertanyaan, soal.id_jenis, option.id_soal, option.id_option, option.nama_option,
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN nama_option END) AS Pilihan_a, 
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN nama_option END) AS Pilihan_b, 
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN nama_option END) AS Pilihan_c, 
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN skor END) AS skor_a,
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN skor END) AS skor_b,
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN skor END) AS skor_c
+      FROM option  
+      JOIN soal ON soal.id_soal = option.id_soal
+      WHERE soal.id_jenis = 's'
+      GROUP BY soal.id_soal, option.id_soal
+      ");
+
+   			?>
+
+   	<div class='post_title'><b>Transportasi</b></div>
+   
+   <?php
    //$jumlah=mysql_num_rows($sql);
-   $urut=0;
-   $r=mysql_fetch_array($sql);
-   foreach ($r as $key) {
-   echo "<form name='form1' method'post' action='jawab.php'>
-          <div class='post_title'><b>Isilah pertanyaan dibawah ini</b></div>
-          <div class='text_area'>".nl2br($key[id_soal]).". ".nl2br($key[pertanyaan])."</div>
-          <input type='radio' class='text_area' value='pilihan_a'>".nl2br($key[pilihan_a])."</input>
-          <input type='radio' class='text_area' value='pilihan_b'>".nl2br($key[pilihan_b])."</input>
+   //$urut=0;
+   while($q=mysql_fetch_array($sql)){
+   	$id = $q['id_soal'];
+   	$tanya = $q['pertanyaan'];
+   	$pilihan_a = $q['Pilihan_a'];
+   	$pilihan_b = $q['Pilihan_b'];
+   	$pilihan_c = $q['Pilihan_c'];
+   	
+   	$jenis_s = $q['jenis'];
+   	$skor_a = $q['skor_a'];
+   	$skor_b = $q['skor_b'];
+   	$skor_c = $q['skor_c'];
+   	
+   //foreach ($r as $key) {
+   echo "<form name='form1' method'post' action='$aksi?module=soal&act=input'>
           
           
-          ";      
-   }
+          <BR><label for ='soal'> $id </label>
+          <input type='hidden' name='id'>
+          <label name='pertanyaan' disabled> $tanya </label>
+          <br><input name='jawaban_s' type='radio' value='$skor_a'> <font> $pilihan_a </font> 
+          <br><input name='jawaban_s' type='radio' value='$skor_b'> <font> $pilihan_b </font>
+          <br><input name='jawaban_s' type='radio' value='$skor_c'> <font> $pilihan_c </font>
+          
+          ";  
+      }
+
+
+      ?>
+      <div class='post_title'><b>Ruang hijau</b></div>
+
+      <?php
+
+    $sql2=mysql_query("SELECT soal.id_soal, soal.pertanyaan, soal.id_jenis, option.id_soal, option.id_option, option.nama_option,
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN nama_option END) AS Pilihan_a, 
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN nama_option END) AS Pilihan_b, 
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN nama_option END) AS Pilihan_c, 
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN skor END) AS skor_a,
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN skor END) AS skor_b,
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN skor END) AS skor_c
+      FROM option  
+      JOIN soal ON soal.id_soal = option.id_soal
+      WHERE soal.id_jenis = 'r'
+      GROUP BY soal.id_soal, option.id_soal");
+   //$jumlah=mysql_num_rows($sql);
+   //$urut=0;
+   while($q=mysql_fetch_array($sql2)){
+   	$id2 = $q['id_soal'];
+   	$tanya2 = $q['pertanyaan'];
+   	$pilihan_a2 = $q['Pilihan_a'];
+   	$pilihan_b2 = $q['Pilihan_b'];
+   	$pilihan_c2 = $q['Pilihan_c'];
+   	
+   	$jenis_s2 = $q['jenis'];
+   	$skor_a2 = $q['skor_a'];
+   	$skor_b2 = $q['skor_b'];
+   	$skor_c2 = $q['skor_c'];
+   	
+   //foreach ($r as $key) {
+   echo "
+          
+          <form name='form1' method'post' action='$aksi?module=soal&act=input'>
+          <br><label for ='soal'> $id2 </label>
+          <label name='pertanyaan' disabled> $tanya2 </label><br>
+          <input type='hidden' name='id'>
+          <br><input name='jawaban_r' type='radio' value='$skor_a2'> <font> $pilihan_a2 </font> 
+          <br><input name='jawaban_r' type='radio' value='$skor_b2'> <font> $pilihan_b2 </font>
+          <br><input name='jawaban_r' type='radio' value='$skor_c2'> <font> $pilihan_c2 </font>
+          
+          ";  
+
+         }
+         ?>
+
+    <div class='post_title'><b>Transportasi</b></div>
+
+      <?php
+   $sql4=mysql_query("SELECT soal.id_soal, soal.pertanyaan, soal.id_jenis, option.id_soal, option.id_option, option.nama_option,
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN nama_option END) AS Pilihan_a, 
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN nama_option END) AS Pilihan_b, 
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN nama_option END) AS Pilihan_c, 
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN skor END) AS skor_a,
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN skor END) AS skor_b,
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN skor END) AS skor_c
+      FROM option  
+      JOIN soal ON soal.id_soal = option.id_soal
+      WHERE soal.id_jenis = 't'
+      GROUP BY soal.id_soal, option.id_soal");
+   //$jumlah=mysql_num_rows($sql);
+   //$urut=0;
+   while($q=mysql_fetch_array($sql4)){
+    $id4 = $q['id_soal'];
+    $tanya4 = $q['pertanyaan'];
+    $pilihan_a4 = $q['Pilihan_a'];
+    $pilihan_b4 = $q['Pilihan_b']; 
+    $pilihan_c4 = $q['Pilihan_c'];
+    
+    $jenis_s4 = $q['jenis'];
+    $skor_a4 = $q['skor_a'];
+    $skor_b4 = $q['skor_b'];
+    $skor_c4 = $q['skor_c'];
+   
+   //foreach ($r as $key) {
+   echo "
+          
+          <form name='form1' method'post' action='$aksi?module=soal&act=input'>
+          <br><label for ='soal'> $id4 </label>
+          <label name='pertanyaan' disabled> $tanya4 </label><br>
+          <input type='hidden' name='id'>
+          <br><input name='jawaban_t' type='radio' value='$skor_a4'> <font> $pilihan_a4 </font> 
+          <br><input name='jawaban_t' type='radio' value='$skor_b4'> <font> $pilihan_b4 </font>
+          <br><input name='jawaban_t' type='radio' value='$skor_c4'> <font> $pilihan_c4 </font>
+          
+          ";  
+
+         }
+         ?>
+
+         <div class='post_title'><b>Energi</b></div>
+
+      <?php
+   $sql5=mysql_query("SELECT soal.id_soal, soal.pertanyaan, soal.id_jenis, option.id_soal, option.id_option, option.nama_option,
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN nama_option END) AS Pilihan_a, 
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN nama_option END) AS Pilihan_b, 
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN nama_option END) AS Pilihan_c, 
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN skor END) AS skor_a,
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN skor END) AS skor_b,
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN skor END) AS skor_c
+      FROM option  
+      JOIN soal ON soal.id_soal = option.id_soal
+      WHERE soal.id_jenis = 'e'
+      GROUP BY soal.id_soal, option.id_soal");
+   //$jumlah=mysql_num_rows($sql);
+   //$urut=0;
+   while($q=mysql_fetch_array($sql5)){
+    $id5 = $q['id_soal'];
+    $tanya5 = $q['pertanyaan'];
+    $pilihan_a5 = $q['Pilihan_a'];
+    $pilihan_b5 = $q['Pilihan_b'];
+    $pilihan_c5 = $q['Pilihan_c'];
+    
+    $jenis_s5 = $q['jenis'];
+    $skor_a5 = $q['skor_a'];
+    $skor_b5 = $q['skor_b'];
+    $skor_c5 = $q['skor_c'];
+   
+   //foreach ($r as $key) {
+   echo "
+          
+          <form name='form1' method'post' action='$aksi?module=soal&act=input'>
+          <br><label for ='soal'> $id5 </label>
+          <label name='pertanyaan' disabled> $tanya5 </label><br>
+          <input type='hidden' name='id'>
+          <br><input name='jawaban_e' type='radio' value='$skor_a5'> <font> $pilihan_a5 </font> 
+          <br><input name='jawaban_e' type='radio' value='$skor_b5'> <font> $pilihan_b5 </font>
+          <br><input name='jawaban_e' type='radio' value='$skor_c5'> <font> $pilihan_c5 </font>
+          
+          ";  
+
+         }
+         ?>
+
+      <div class='post_title'><b>daur ulang</b></div>
+
+      <?php
+   $sql3=mysql_query("SELECT soal.id_soal, soal.pertanyaan, soal.id_jenis, option.id_soal, option.id_option, option.nama_option,
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN nama_option END) AS Pilihan_a, 
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN nama_option END) AS Pilihan_b, 
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN nama_option END) AS Pilihan_c, 
+      MAX(CASE WHEN option.id_option LIKE '%a' THEN skor END) AS skor_a,
+      MAX(CASE WHEN option.id_option LIKE '%b' THEN skor END) AS skor_b,
+      MAX(CASE WHEN option.id_option LIKE '%c' THEN skor END) AS skor_c
+      FROM option  
+      JOIN soal ON soal.id_soal = option.id_soal
+      WHERE soal.id_jenis = 'd'
+      GROUP BY soal.id_soal, option.id_soal");
+   //$jumlah=mysql_num_rows($sql);
+   //$urut=0;
+   while($q=mysql_fetch_array($sql3)){
+   	$id3 = $q['id_soal'];
+   	$tanya3 = $q['pertanyaan'];
+   	$pilihan_a3 = $q['Pilihan_a'];
+   	$pilihan_b3 = $q['Pilihan_b'];
+   	$pilihan_c3 = $q['Pilihan_c'];
+   	
+   	$jenis_s3 = $q['jenis'];
+   	$skor_a3 = $q['skor_a'];
+   	$skor_b3 = $q['skor_b'];
+   	$skor_c3 = $q['skor_c'];
+   
+   //foreach ($r as $key) {
+   echo "
+          
+          <form name='form1' method'post' action='$aksi?module=soal&act=input'>
+          <br><label for ='soal'> $id3 </label>
+          <label name='pertanyaan' disabled> $tanya3 </label><br>
+          <input type='hidden' name='id'>
+          <br><input name='jawaban_d' type='radio' value='$skor_a3'> <font> $pilihan_a3 </font> 
+          <br><input name='jawaban_d' type='radio' value='$skor_b3'> <font> $pilihan_b3 </font>
+          <br><input name='jawaban_d' type='radio' value='$skor_c3'> <font> $pilihan_c3 </font>
+           
+          ";  
+
+         }
+         ?>
+
+          <form name='form1' method'post' action='$aksi?module=soal&act=input'>
+          <td><br/><input type=submit name=submit class='button' value=Simpan>
+          <input type=button value=Batal class='button' onclick=self.history.back()></td></tr>
+
+         </form>
+         <?php
+   
    	
     echo "<br/>Halaman: $linkHalaman<br>";
 	}
